@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional CV</title>
+    <title>Taher Hussain's Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,28 +23,35 @@
             font-size: 3rem;
             color: black;
         }
-        .container {
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: #D3D3D3;
+            border-bottom: 2px solid #666;
+        }
+        .tabs button {
+            background: #D3D3D3;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .tabs button.active {
+            border-bottom: 2px solid #333;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
             max-width: 800px;
             margin: 20px auto;
-            padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        h1, h2 {
-            color: #333;
-            border-bottom: 2px solid #666;
-            padding-bottom: 5px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .section ul li {
-            margin-bottom: 10px;
+        .tab-content.active {
+            display: block;
         }
         footer {
             text-align: center;
@@ -54,94 +60,85 @@
             background: #D3D3D3;
             color: black;
         }
-        a {
-            color: #666;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .upload-section {
-            border: 1px solid #D3D3D3;
-            padding: 20px;
-            border-radius: 5px;
-            background: #fff;
-        }
-        .upload-section button {
-            background: #D3D3D3;
-            color: black;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .upload-section button:hover {
-            background: #A9A9A9;
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>Taher Hussain</h1>
-        <p>AutoCAD Designer | Contact: taherhussain29062010@gmail.com </p>
+        <p>AutoCAD Designer | Contact: <a href="mailto:taherhussain29062010@gmail.com">taherhussain29062010@gmail.com</a></p>
     </header>
 
-    <div class="container">
-        <div class="section">
-            <h2>Profile Summary</h2>
-            <p>Experienced in creating precise and innovative AutoCAD designs for a wide range of engineering and architectural projects. Excels at transforming concepts into detailed technical drawings, ensuring accuracy and functionality. Enthusiastic about collaborating with teams to bring ideas to life through exceptional design solutions. AutoCAD professional with strong technical skills in creating detailed 2D designs for construction and engineering projects. Experienced in collaborating with architects and engineers to produce accurate and efficient layouts, ensuring project specifications are met and building regulations are followed. Proficient in using AutoCAD software to develop schematics, blueprints, and technical drawings, with focus on precision and quality.</p>
-        </div>
+    <div class="tabs">
+        <button class="tab-link active" onclick="openTab(event, 'bio')">Bio</button>
+        <button class="tab-link" onclick="openTab(event, 'projects')">Projects</button>
+    </div>
 
-        <div class="section">
-            <h2>Skills</h2>
-            <ul>
-                <li>2D renderings</li>
-                <li>Project support</li>
-                <li>Project development</li>
-                <li>Drawing preparation</li>
-                <li>System layouts</li>
-                <li>Scaling guidelines</li>
-            </ul>
-        </div>
+    <div id="bio" class="tab-content active">
+        <h2>Profile Summary</h2>
+        <p>Experienced in creating precise and innovative AutoCAD designs for a wide range of engineering and architectural projects. Excels at transforming concepts into detailed technical drawings, ensuring accuracy and functionality. Enthusiastic about collaborating with teams to bring ideas to life through exceptional design solutions. AutoCAD professional with strong technical skills in creating detailed 2D designs for construction and engineering projects. Experienced in collaborating with architects and engineers to produce accurate and efficient layouts, ensuring project specifications are met and building regulations are followed. Proficient in using AutoCAD software to develop schematics, blueprints, and technical drawings, with focus on precision and quality.</p>
 
-        <div class="section">
-            <h2>Experience</h2>
-            <ul>
-                <li>
-                    <strong>AutoCAD Designer</strong> at <strong>AH Corporation</strong>, Udaipur, India (June 2024 - Current)
-                    <br>Responsibilities:
-                    <ul>
-                        <li>Created project drawings including Lamella clarifier plans and Filter Feed Pump plans.</li>
-                        <li>Used AutoCAD software to prepare high-quality project drawings.</li>
-                        <li>Provided technical support for AutoCAD issues, resolving problems promptly and maintaining project momentum.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <h2>Skills</h2>
+        <ul>
+            <li>2D renderings</li>
+            <li>Project support</li>
+            <li>Project development</li>
+            <li>Drawing preparation</li>
+            <li>System layouts</li>
+            <li>Scaling guidelines</li>
+        </ul>
 
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li>
-                    <strong>Rockwoods High School</strong>, Udaipur, RJ
-                    <br>Currently studying in Class 9th.
-                    <br>Future plans: Study Technology and Science.
-                </li>
-            </ul>
-        </div>
+        <h2>Experience</h2>
+        <ul>
+            <li>
+                <strong>AutoCAD Designer</strong> at <strong>AH Corporation</strong>, Udaipur, India (June 2024 - Current)
+                <ul>
+                    <li>Created project drawings including Lamella clarifier plans and Filter Feed Pump plans.</li>
+                    <li>Used AutoCAD software to prepare high-quality project drawings.</li>
+                    <li>Provided technical support for AutoCAD issues, resolving problems promptly and maintaining project momentum.</li>
+                </ul>
+            </li>
+        </ul>
 
-        <div class="section">
-            <h2>Languages</h2>
-            <ul>
-                <li>Hindi: C1 (Advanced)</li>
-                <li>English: B2 (Upper Intermediate)</li>
-            </ul>
-        </div>
+        <h2>Education</h2>
+        <ul>
+            <li>
+                <strong>Rockwoods High School</strong>, Udaipur, RJ
+                <br>Currently studying in Class 9th.
+                <br>Future plans: Study Technology and Science.
+            </li>
+        </ul>
 
-        
+        <h2>Languages</h2>
+        <ul>
+            <li>Hindi: C1 (Advanced)</li>
+            <li>English: B2 (Upper Intermediate)</li>
+        </ul>
+    </div>
+
+    <div id="projects" class="tab-content">
+        <h2>Projects</h2>
+        <p>Below is one of my recent project designs:</p>
+        <img src="WIN_20230309_15_13_51_Pro.jpg" alt="Project Image" style="width:100%; height:auto; border:1px solid #666; border-radius:5px;">
+    </div>
 
     <footer>
         <p>&copy; 2024 Taher Hussain. All rights reserved.</p>
     </footer>
+
+    <script>
+        function openTab(event, tabId) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const tabLinks = document.querySelectorAll('.tab-link');
+            tabLinks.forEach(link => link.classList.remove('active'));
+
+            // Show the selected tab and mark the button as active
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>
