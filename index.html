@@ -1,190 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taher Hussain's Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-            background-color: #fff;
-        }
-        header {
-            background: #D3D3D3;
-            color: black;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 3rem;
-            color: black;
-        }
-        .tabs {
-            display: flex;
-            justify-content: center;
-            background: #D3D3D3;
-            border-bottom: 2px solid #666;
-        }
-        .tabs button {
-            background: #D3D3D3;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .tabs button.active {
-            border-bottom: 2px solid #333;
-            font-weight: bold;
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .tab-content.active {
-            display: block;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
-            background: #D3D3D3;
-            color: black;
-        }
-        ul li {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        ul li a {
-            text-decoration: none;
-            color: #007BFF;
-        }
-        ul li a:hover {
-            text-decoration: underline;
-            color: #0056b3;
-        }
-        ul li img {
-            width: 150px;
-            height: auto;
-            vertical-align: middle;
-            margin-right: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taher Hussain — AutoCAD Designer | Arduino Programmer | Python Coder</title>
+<meta name="description" content="CV and project portfolio of Taher Hussain, AutoCAD Designer at AH Corporation, Udaipur, India.">
+<meta name="theme-color" content="#0b1020">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+<style>
+:root{
+  --bg1:#dfe9ff; --bg2:#f3e8ff; --text:#10131c; --muted:#4b5468;
+  --glass:rgba(255,255,255,.42); --glass-strong:rgba(255,255,255,.62);
+  --stroke:rgba(255,255,255,.75); --stroke-dim:rgba(255,255,255,.35);
+  --shadow:0 10px 40px rgba(40,60,120,.18); --accent:#0a84ff; --accent2:#5e5ce6;
+  --blob1:#7aa7ff; --blob2:#d58bff; --blob3:#6ee7d8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg1:#070b18; --bg2:#14102a; --text:#f4f6fb; --muted:#aab3c7;
+    --glass:rgba(255,255,255,.08); --glass-strong:rgba(255,255,255,.14);
+    --stroke:rgba(255,255,255,.28); --stroke-dim:rgba(255,255,255,.10);
+    --shadow:0 12px 44px rgba(0,0,0,.5); --accent:#4da3ff; --accent2:#8b8bff;
+    --blob1:#2c5bff; --blob2:#8a2be2; --blob3:#00a896;
+  }
+}
+:root[data-theme="dark"]{
+  --bg1:#070b18; --bg2:#14102a; --text:#f4f6fb; --muted:#aab3c7;
+  --glass:rgba(255,255,255,.08); --glass-strong:rgba(255,255,255,.14);
+  --stroke:rgba(255,255,255,.28); --stroke-dim:rgba(255,255,255,.10);
+  --shadow:0 12px 44px rgba(0,0,0,.5); --accent:#4da3ff; --accent2:#8b8bff;
+  --blob1:#2c5bff; --blob2:#8a2be2; --blob3:#00a896;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text); min-height:100vh; overflow-x:hidden;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;
+  padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);
+  -webkit-font-smoothing:antialiased;
+}
+/* animated background blobs */
+.blobs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;animation:float 18s ease-in-out infinite}
+.blob.b1{width:46vmax;height:46vmax;background:var(--blob1);top:-12vmax;left:-10vmax}
+.blob.b2{width:40vmax;height:40vmax;background:var(--blob2);bottom:-14vmax;right:-8vmax;animation-delay:-6s}
+.blob.b3{width:30vmax;height:30vmax;background:var(--blob3);top:40%;left:45%;animation-delay:-11s;opacity:.5}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6vmax,4vmax) scale(1.1)}66%{transform:translate(-4vmax,6vmax) scale(.95)}}
+
+/* liquid glass surface */
+.glass{
+  position:relative;
+  background:linear-gradient(135deg,var(--glass-strong),var(--glass));
+  border:1px solid var(--stroke-dim);
+  border-radius:28px;
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:var(--shadow),inset 0 1.5px 0 var(--stroke),inset 0 -1px 0 var(--stroke-dim),inset 0 0 30px rgba(255,255,255,.06);
+  overflow:hidden;
+}
+.glass::before{ /* specular highlight following the pointer */
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(340px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.34),transparent 60%);
+  opacity:.9;transition:opacity .3s;
+}
+.glass > *{position:relative}
+
+.wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:22px 18px 70px}
+
+/* top nav */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20}
+.brand{font-weight:700;letter-spacing:.2px;padding:10px 18px;border-radius:999px;font-size:15px}
+.tabs{display:flex;gap:4px;padding:5px;border-radius:999px;position:relative}
+.tab{
+  border:0;background:transparent;color:var(--muted);font:600 14px inherit;font-family:inherit;
+  padding:9px 22px;border-radius:999px;cursor:pointer;position:relative;z-index:2;transition:color .25s;letter-spacing:.4px;
+}
+.tab[aria-selected="true"]{color:var(--text)}
+.tab:focus-visible,.btn:focus-visible,.icon-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pill{
+  position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;z-index:1;
+  background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.38));
+  box-shadow:0 3px 12px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .4s cubic-bezier(.3,1.3,.5,1),width .4s cubic-bezier(.3,1.3,.5,1);
+}
+:root[data-theme="dark"] .pill{background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.1))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pill{background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.1))}}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--stroke-dim);color:var(--text);cursor:pointer;font-size:17px;display:grid;place-items:center;background:var(--glass)}
+
+/* hero */
+.hero{padding:38px 34px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:22px}
+.avatar{
+  width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-size:42px;font-weight:700;color:#fff;
+  background:conic-gradient(from 210deg,var(--accent),var(--accent2),#ff6bd6,var(--accent));
+  box-shadow:0 8px 28px rgba(10,132,255,.4),inset 0 2px 0 rgba(255,255,255,.5);
+}
+h1{font-size:clamp(30px,5vw,48px);letter-spacing:-1px;line-height:1.05}
+.role{color:var(--muted);margin-top:8px;font-size:clamp(14px,2vw,17px);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;font:600 14px inherit;font-family:inherit;
+  color:var(--text);padding:10px 18px;border-radius:999px;border:1px solid var(--stroke-dim);
+  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
+  box-shadow:inset 0 1px 0 var(--stroke),0 4px 14px rgba(0,0,0,.08);
+  transition:transform .2s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 var(--stroke),0 8px 22px rgba(0,0,0,.16)}
+.btn.primary{color:#fff;border-color:transparent;background:linear-gradient(180deg,#3b9bff,#0a6cff);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 6px 18px rgba(10,108,255,.4)}
+
+/* panels */
+.panel{display:none;animation:in .5s ease both}
+.panel.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.card{padding:26px 28px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);margin-bottom:14px;font-weight:700}
+.card p{line-height:1.7;font-size:15.5px}
+.span12{grid-column:span 12}.span7{grid-column:span 7}.span5{grid-column:span 5}.span6{grid-column:span 6}
+
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skill{padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid var(--stroke-dim);background:var(--glass);transition:transform .2s,background .2s;cursor:default}
+.skill:hover{transform:translateY(-3px) scale(1.04);background:var(--glass-strong)}
+
+.job{display:flex;gap:16px}
+.dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 5px rgba(10,132,255,.18)}
+.job h3{font-size:18px}
+.job .meta{color:var(--muted);font-size:14px;margin:3px 0 10px}
+.job ul{margin-left:18px;line-height:1.7;font-size:15px}
+
+.lang{margin-bottom:14px}
+.lang:last-child{margin-bottom:0}
+.lang .row{display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:6px}
+.lang .row span:last-child{color:var(--muted);font-weight:500}
+.bar{height:8px;border-radius:99px;background:var(--stroke-dim);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+.edu strong{font-size:16px}
+.edu p{color:var(--muted);margin-top:6px;font-size:14.5px}
+
+/* projects */
+.section-title{margin:6px 4px 18px}
+.section-title h2{font-size:clamp(22px,3.5vw,30px);letter-spacing:-.5px}
+.section-title p{color:var(--muted);margin-top:6px}
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.project{padding:0;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.project:hover{transform:translateY(-6px)}
+.thumb{
+  height:190px;position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer;
+  background:linear-gradient(135deg,rgba(10,132,255,.35),rgba(94,92,230,.35));
+}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.project:hover .thumb img{transform:scale(1.07)}
+.thumb .fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;z-index:0}
+.thumb img{position:relative;z-index:1}
+.thumb .tag{position:absolute;z-index:2;top:12px;left:12px;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 11px;border-radius:99px;background:rgba(0,0,0,.35);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.project .body{padding:20px 22px 22px}
+.project h3{font-size:19px;letter-spacing:-.2px}
+.project p{color:var(--muted);font-size:14px;line-height:1.55;margin:6px 0 16px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.actions .btn{padding:9px 16px;font-size:13.5px}
+
+/* viewer modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 14px) 14px calc(env(safe-area-inset-bottom,0px) + 14px);background:rgba(5,8,20,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.modal.open{display:flex;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.viewer{width:min(1100px,100%);height:100%;max-height:92vh;display:flex;flex-direction:column;animation:in .4s cubic-bezier(.2,.8,.2,1)}
+.viewer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--stroke-dim);flex-wrap:wrap}
+.viewer-head h3{font-size:16px}
+.viewer-head .actions{margin-left:auto}
+.viewer iframe{flex:1;width:100%;border:0;background:#fff}
+.viewer .note{font-size:12.5px;color:var(--muted);padding:9px 18px;text-align:center;border-top:1px solid var(--stroke-dim)}
+
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 26px);transform:translate(-50%,30px);opacity:0;z-index:200;padding:11px 20px;border-radius:99px;font-size:14px;font-weight:600;transition:.35s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;text-align:center;justify-items:center;padding:30px 22px}
+  .chips{justify-content:center}
+  .span7,.span5,.span6{grid-column:span 12}
+  .brand{display:none}
+  .topbar{justify-content:center}
+  .viewer{max-height:100%}
+}
+@media print{
+  .blobs,.topbar,.modal,.actions,.toast{display:none!important}
+  body{background:#fff;color:#000}
+  .glass{box-shadow:none;border:1px solid #ccc;-webkit-backdrop-filter:none;backdrop-filter:none;background:#fff}
+  .panel{display:block!important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Taher Hussain</h1>
-        <p>AutoCAD Designer | Arduino Programmer | Python Coder</p>
-        <p>
-            Contact: 
-            <a href="mailto:taherhussain29062010@gmail.com">taherhussain29062010@gmail.com</a> | 
-            <a href="tel:+917073095253">+91 70730 95253</a>
-        </p>
-    </header>
+<div class="blobs" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 
-    <div class="tabs">
-        <button class="tab-link active" onclick="openTab(event, 'bio')">Bio</button>
-        <button class="tab-link" onclick="openTab(event, 'projects')">Projects</button>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand glass">Taher Hussain</div>
+    <nav class="tabs glass" role="tablist" aria-label="Sections">
+      <span class="pill" id="pill"></span>
+      <button class="tab" role="tab" id="tab-bio" aria-controls="bio" aria-selected="true">BIO</button>
+      <button class="tab" role="tab" id="tab-projects" aria-controls="projects" aria-selected="false">PROJECTS</button>
+    </nav>
+    <button class="icon-btn" id="theme" aria-label="Toggle light and dark theme" title="Toggle theme">🌓</button>
+  </header>
+
+  <section class="hero glass">
+    <div class="avatar" aria-hidden="true">TH</div>
+    <div>
+      <h1>Taher Hussain</h1>
+      <p class="role">AutoCAD Designer · Arduino Programmer · Python Coder</p>
+      <div class="chips">
+        <a class="btn primary" href="mailto:taherhussain29062010@gmail.com">✉️ Email me</a>
+        <a class="btn" href="tel:+917073095253">📞 +91 70730 95253</a>
+        <a class="btn" href="#" id="toProjects">📐 View projects</a>
+      </div>
     </div>
+  </section>
 
-    <div id="bio" class="tab-content active">
+  <!-- BIO -->
+  <main>
+  <section class="panel active" id="bio" role="tabpanel" aria-labelledby="tab-bio">
+    <div class="grid">
+      <article class="card glass span12 reveal">
         <h2>Profile Summary</h2>
-        <p>Experienced in creating precise and innovative AutoCAD designs for a wide range of engineering and architectural projects. Excels at transforming concepts into detailed technical drawings, ensuring accuracy and functionality. Enthusiastic about collaborating with teams to bring ideas to life through exceptional design solutions. AutoCAD professional with strong technical skills in creating detailed 2D designs for construction and engineering projects. Experienced in collaborating with architects and engineers to produce accurate and efficient layouts, ensuring project specifications are met and building regulations are followed. Proficient in using AutoCAD software to develop schematics, blueprints, and technical drawings, with focus on precision and quality.</p>
+        <p>Experienced in creating precise and innovative AutoCAD designs for a wide range of engineering and architectural projects. Excels at transforming concepts into detailed technical drawings, ensuring accuracy and functionality. Enthusiastic about collaborating with teams to bring ideas to life through exceptional design solutions.</p>
+        <p style="margin-top:12px">AutoCAD professional with strong technical skills in creating detailed 2D designs for construction and engineering projects. Experienced in collaborating with architects and engineers to produce accurate and efficient layouts, ensuring project specifications are met and building regulations are followed. Proficient in using AutoCAD software to develop schematics, blueprints, and technical drawings, with focus on precision and quality.</p>
+      </article>
 
-        <h2>Skills</h2>
-        <ul>
-            <li>2D renderings</li>
-            <li>Project support</li>
-            <li>Project development</li>
-            <li>Drawing preparation</li>
-            <li>System layouts</li>
-            <li>Scaling guidelines</li>
-        </ul>
-
+      <article class="card glass span7 reveal">
         <h2>Experience</h2>
-        <ul>
-            <li>
-                <strong>AutoCAD Designer</strong> at <strong>AH Corporation</strong>, Udaipur, India (June 2024 - Current)
-                <ul>
-                    <li>Created project drawings including Lamella clarifier plans and Filter Feed Pump plans.</li>
-                    <li>Used AutoCAD software to prepare high-quality project drawings.</li>
-                    <li>Provided technical support for AutoCAD issues, resolving problems promptly and maintaining project momentum.</li>
-                </ul>
-            </li>
-        </ul>
+        <div class="job">
+          <span class="dot"></span>
+          <div>
+            <h3>AutoCAD Designer</h3>
+            <div class="meta">AH Corporation · Udaipur, India · June 2024 – Current</div>
+            <ul>
+              <li>Created project drawings including Lamella clarifier plans and Filter Feed Pump plans.</li>
+              <li>Used AutoCAD software to prepare high-quality project drawings.</li>
+              <li>Provided technical support for AutoCAD issues, resolving problems promptly and maintaining project momentum.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
 
+      <article class="card glass span5 reveal">
+        <h2>Skills</h2>
+        <div class="skills">
+          <span class="skill">2D renderings</span>
+          <span class="skill">Project support</span>
+          <span class="skill">Project development</span>
+          <span class="skill">Drawing preparation</span>
+          <span class="skill">System layouts</span>
+          <span class="skill">Scaling guidelines</span>
+        </div>
+      </article>
+
+      <article class="card glass span6 reveal edu">
         <h2>Education</h2>
-        <ul>
-            <li>
-                <strong>Rockwoods High School</strong>, Udaipur, RJ
-                <br>Currently studying in Class 9th.
-                <br>Future plans: Study Technology and Science.
-            </li>
-        </ul>
+        <strong>Rockwoods High School</strong>
+        <p>Udaipur, Rajasthan<br>Currently studying in Class 9th.<br>Future plans: Study Technology and Science.</p>
+      </article>
 
+      <article class="card glass span6 reveal">
         <h2>Languages</h2>
-        <ul>
-            <li>Hindi: C1 (Advanced)</li>
-            <li>English: B2 (Upper Intermediate)</li>
-        </ul>
+        <div class="lang"><div class="row"><span>Hindi</span><span>C1 · Advanced</span></div><div class="bar"><i data-w="88"></i></div></div>
+        <div class="lang"><div class="row"><span>English</span><span>B2 · Upper Intermediate</span></div><div class="bar"><i data-w="68"></i></div></div>
+      </article>
     </div>
+  </section>
 
-    <div id="projects" class="tab-content">
-        <h2>Projects</h2>
-        <p>Below are some of my recent project designs:</p>
-        <ul>
-            <li>
-                <img src="thumbnails/Project 1 Thumbnail.jpeg" alt="Project 1 Thumbnail">
-                <a href="Project 1.pdf" target="_blank">Project 1</a>
-                <a href="Project 1.pdf" download style="margin-left: 10px;">Download</a>
-            </li>
-            <li>
-                <img src="thumbnails/Project 3 Thumbnail.jpeg" alt="Project 3 Thumbnail">
-                <a href="Project 3.pdf" target="_blank">Project 3</a>
-                <a href="Project 3.pdf" download style="margin-left: 10px;">Download</a>
-            </li>
-            <li>
-                <img src="thumbnails/pool drawing.jpeg" alt="Pool Drawing Thumbnail">
-                <a href="pool drawing.pdf" target="_blank">Pool Drawing</a>
-                <a href="pool drawing.pdf" download style="margin-left: 10px;">Download</a>
-            </li>
-            <li>
-                <img src="thumbnails/treated water tank.pdf" alt="Treated Water Tank Thumbnail">
-                <a href="treated water tank.pdf" target="_blank">Treated Water Tank</a>
-                <a href="treated water tank.pdf" download style="margin-left: 10px;">Download</a>
-            </li>
-        </ul>
+  <!-- PROJECTS -->
+  <section class="panel" id="projects" role="tabpanel" aria-labelledby="tab-projects">
+    <div class="section-title">
+      <h2>Recent project designs</h2>
+      <p>Tap a project to view it here, or download the PDF.</p>
     </div>
+    <div class="projects" id="projectGrid"></div>
+  </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2024 Taher Hussain. All rights reserved.</p>
-    </footer>
+  <footer>© <span id="yr">2024</span> Taher Hussain. All rights reserved.</footer>
+</div>
 
-    <script>
-        function openTab(event, tabId) {
-            // Hide all tab content
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => content.classList.remove('active'));
+<!-- PDF viewer -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="vTitle">
+  <div class="viewer glass">
+    <div class="viewer-head">
+      <h3 id="vTitle">Project</h3>
+      <div class="actions">
+        <a class="btn primary" id="vDownload" href="#" download>⬇️ Download</a>
+        <a class="btn" id="vOpen" href="#" target="_blank" rel="noopener">↗ Open in new tab</a>
+        <button class="btn" id="vClose">✕ Close</button>
+      </div>
+    </div>
+    <iframe id="vFrame" title="Project PDF viewer"></iframe>
+    <div class="note">If the preview doesn’t appear on your device, use “Open in new tab”.</div>
+  </div>
+</div>
+<div class="toast glass" id="toast" role="status"></div>
 
-            // Remove active class from all buttons
-            const tabLinks = document.querySelectorAll('.tab-link');
-            tabLinks.forEach(link => link.classList.remove('active'));
+<script>
+(function(){
+  var BASE = "https://taher5152.github.io/CV/";
+  var PROJECTS = [
+    {title:"Project 1", tag:"AUTOCAD", desc:"Detailed 2D engineering drawing prepared in AutoCAD.", file:"Project%201.pdf", thumb:"thumbnails/Project%201%20Thumbnail.jpeg", icon:"📐"},
+    {title:"Project 3", tag:"AUTOCAD", desc:"Technical drawing with accurate layouts and scaling.", file:"Project%203.pdf", thumb:"thumbnails/Project%203%20Thumbnail.jpeg", icon:"📏"},
+    {title:"Pool Drawing", tag:"LAYOUT", desc:"Swimming pool plan drawing prepared to project specifications.", file:"pool%20drawing.pdf", thumb:"thumbnails/pool%20drawing.jpeg", icon:"🏊"},
+    {title:"Treated Water Tank", tag:"WATER TREATMENT", desc:"Treated water tank drawing for a water treatment system.", file:"treated%20water%20tank.pdf", thumb:"", icon:"💧"}
+  ];
 
-            // Show the selected tab and mark the button as active
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+  /* ---------- helpers ---------- */
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var toastEl = $("#toast"), toastT;
+  function toast(msg){toastEl.textContent = msg; toastEl.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){toastEl.classList.remove("show")},2400)}
+  function fileName(f){return decodeURIComponent(f)}
+
+  /* ---------- tabs ---------- */
+  var tabs = $$(".tab"), pill = $("#pill");
+  function movePill(){
+    var t = $(".tab[aria-selected='true']");
+    pill.style.width = t.offsetWidth + "px";
+    pill.style.transform = "translateX(" + (t.offsetLeft - 5) + "px)";
+  }
+  function show(id, push){
+    tabs.forEach(function(t){t.setAttribute("aria-selected", t.getAttribute("aria-controls")===id ? "true":"false")});
+    $$(".panel").forEach(function(p){p.classList.toggle("active", p.id===id)});
+    movePill(); animateBars(); revealAll();
+    if(push!==false){ try{history.replaceState(null,"","#"+id)}catch(e){} }
+  }
+  tabs.forEach(function(t){t.addEventListener("click", function(){show(t.getAttribute("aria-controls"))})});
+  $("#toProjects").addEventListener("click", function(e){e.preventDefault(); show("projects"); window.scrollTo({top:0,behavior:"smooth"})});
+  window.addEventListener("resize", movePill);
+  window.addEventListener("hashchange", function(){var h=location.hash.slice(1); if(h==="bio"||h==="projects") show(h,false)});
+
+  /* ---------- language bars + reveal ---------- */
+  function animateBars(){ $$(".bar i").forEach(function(b){b.style.width="0"; setTimeout(function(){b.style.width=b.dataset.w+"%"},120)}) }
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in"); io.unobserve(e.target)}})},{threshold:.12}) : null;
+  function revealAll(){ $$(".panel.active .reveal").forEach(function(el,i){ if(io){ el.style.transitionDelay=(i*70)+"ms"; io.observe(el)} else el.classList.add("in") }) }
+
+  /* ---------- project cards ---------- */
+  var grid = $("#projectGrid");
+  PROJECTS.forEach(function(p){
+    var url = BASE + p.file;
+    var card = document.createElement("article");
+    card.className = "project glass";
+    card.innerHTML =
+      '<div class="thumb" role="button" tabindex="0" aria-label="View ' + p.title + '">' +
+        '<div class="fallback" aria-hidden="true">' + p.icon + '</div>' +
+        (p.thumb ? '<img loading="lazy" alt="' + p.title + ' thumbnail" src="' + BASE + p.thumb + '">' : '') +
+        '<span class="tag">' + p.tag + '</span>' +
+      '</div>' +
+      '<div class="body"><h3>' + p.title + '</h3><p>' + p.desc + '</p>' +
+      '<div class="actions">' +
+        '<button class="btn primary" data-view>👁 View</button>' +
+        '<a class="btn" data-dl href="' + url + '" download="' + fileName(p.file) + '">⬇️ Download</a>' +
+      '</div></div>';
+    var img = $("img", card);
+    if(img) img.addEventListener("error", function(){img.remove()});
+    var open = function(){openViewer(p)};
+    $("[data-view]", card).addEventListener("click", open);
+    $(".thumb", card).addEventListener("click", open);
+    $(".thumb", card).addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault(); open()} });
+    $("[data-dl]", card).addEventListener("click", function(e){ e.preventDefault(); download(p) });
+    grid.appendChild(card);
+  });
+
+  /* Reliable download: fetch as blob, fall back to a direct link */
+  function download(p){
+    var url = BASE + p.file, name = fileName(p.file);
+    toast("Downloading " + name + "…");
+    fetch(url).then(function(r){ if(!r.ok) throw 0; return r.blob() }).then(function(b){
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(function(){URL.revokeObjectURL(a.href); a.remove()}, 800);
+    }).catch(function(){
+      var a = document.createElement("a"); a.href = url; a.download = name; a.target = "_blank"; a.rel = "noopener";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  }
+
+  /* ---------- viewer ---------- */
+  var modal = $("#modal"), frame = $("#vFrame"), current = null, lastFocus = null;
+  function openViewer(p){
+    current = p; lastFocus = document.activeElement;
+    var url = BASE + p.file;
+    $("#vTitle").textContent = p.title;
+    $("#vOpen").href = url;
+    $("#vDownload").href = url; $("#vDownload").setAttribute("download", fileName(p.file));
+    frame.src = url + "#toolbar=1&navpanes=0&view=FitH";
+    modal.classList.add("open"); document.body.style.overflow = "hidden";
+    $("#vClose").focus();
+  }
+  function closeViewer(){
+    modal.classList.remove("open"); frame.src = "about:blank"; document.body.style.overflow = "";
+    if(lastFocus) lastFocus.focus();
+  }
+  $("#vClose").addEventListener("click", closeViewer);
+  modal.addEventListener("click", function(e){ if(e.target===modal) closeViewer() });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape" && modal.classList.contains("open")) closeViewer() });
+  $("#vDownload").addEventListener("click", function(e){ e.preventDefault(); if(current) download(current) });
+
+  /* ---------- liquid glass pointer highlight ---------- */
+  document.addEventListener("pointermove", function(e){
+    var g = e.target.closest && e.target.closest(".glass");
+    if(!g) return;
+    var r = g.getBoundingClientRect();
+    g.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    g.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, {passive:true});
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  try{ var saved = localStorage.getItem("th-theme"); if(saved) root.setAttribute("data-theme", saved) }catch(e){}
+  $("#theme").addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme")==="dark" || (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("th-theme", next) }catch(e){}
+  });
+
+  /* ---------- init ---------- */
+  $("#yr").textContent = new Date().getFullYear();
+  var start = location.hash.slice(1);
+  show(start==="projects" ? "projects" : "bio", false);
+  window.addEventListener("load", movePill);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+})();
+</script>
 </body>
 </html>
